@@ -16,13 +16,13 @@ BenefitJS provides:
 
 ## 👉 Getting Started
 
-Here's what the BenefitJS checkout page looks like:
-
-
-
-.. versus the default (and rather distasteful) integration you may have seen in the wild:
+This is what the default (and rather distasteful) Benefit integration looks like:
 
 ![Benefit - Before](./assets/benefit-before.png)
+
+.. and here's what the BenefitJS checkout page looks like:
+
+![Benefit - After](./assets/benefit-after.png)
 
 ## ⚡ How it works
 
