@@ -14,7 +14,7 @@ BenefitJS provides:
 - 😍 Additional features, including support for one-click checkout (or "Tokenization", in payments lingo)
 - 📧 **Premium support**, available to Enterprise customers (more [below](#-premium-support))
 
-## 👉 Getting Started
+## 👉 How it looks
 
 This is what the default (and rather distasteful) Benefit integration looks like:
 
@@ -24,13 +24,22 @@ This is what the default (and rather distasteful) Benefit integration looks like
 
 ![Benefit - After](./assets/benefit-after.png)
 
-## ⚡ How it works
+## ⚡ Getting Started
 
-This project consists of an `index.js` that creates an `<iframe>` in the parent window, or opens a separate window on mobile devices.
+This project consists of two main parts:
 
-Checkout, a Vue application with the actual Checkout form, is added as a submodule at [`inner/`](https://github.com/benefit-js/inner/tree/). 
+1. An `index.js` that creates an `<iframe>` in the parent window, or opens a separate window on mobile devices.
+2. Checkout, a Vue application with the actual Checkout form, is added as a submodule at [`inner/`](https://github.com/benefit-js/inner/tree/). 
 
-The two projects are tightly coupled so we track them jointly thorugh this repository.
+Since the two projects are tightly coupled, we track them jointly through this repository.
+
+## 💻 Local environment setup
+
+1. Create a `.env.development` file with the following keys:
+  - `CHECKOUT_URL=http://localhost:8080`, or whatever the local server URL is for your `[inner](https://github.com/benefit-js/benefit-js)` repository
+2. Run `yarn run serve`
+
+This should open up the `demo.html` file in your browser. Editing the `index.js` script should automagically reload your browser and keep things in sync!
 
 ### Deployment
 

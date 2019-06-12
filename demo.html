@@ -3,7 +3,7 @@
 
 <head>
   <meta charset="UTF-8">
-  <script src="./dist/benefit.js"></script>
+  <script src="./index.js"></script>
 </head>
 
 <body>
@@ -12,7 +12,21 @@
 
   <button>💵 Pay with Benefit</button>
   <script>
-    console.log(BenefitJS)
+    let b = new BenefitJS({
+      amount: 1.2,
+      publicKey: 'pk_abc123',
+      transactionId: '12910',
+      onClose: () => {
+        alert('closed')
+      },
+      onCancel: () => {
+        alert('cancelled')
+      },
+      onComplete: () => {
+        alert('completed')
+      }
+    })
+    console.log(b)
   </script>
 </body>
 
