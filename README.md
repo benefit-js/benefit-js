@@ -2,7 +2,7 @@
 
 > Congratulations! You just found the *easiest* way to integrate with the BENEFIT payment system in Bahrain!
 
-## 👋 About BenefitJS
+## 👋 About
 
 BenefitJS¹ is a simple, open-source library that allows you to accept BENEFIT payments through a modern, reliable interface that is optimized around the User Experience. 
 
@@ -14,7 +14,7 @@ BenefitJS provides:
 - 😍 Additional features, including support for one-click checkout (or "Tokenization", in payments lingo)
 - 📧 **Premium support**, available to Enterprise customers (more [below](#-premium-support))
 
-## 👉 Getting Started
+## 👉 How it looks
 
 This is what the default (and rather distasteful) Benefit integration looks like:
 
@@ -24,13 +24,42 @@ This is what the default (and rather distasteful) Benefit integration looks like
 
 ![Benefit - After](./assets/benefit-after.png)
 
-## ⚡ How it works
+## ⚡ Getting Started
 
-This project consists of an `index.js` that creates an `<iframe>` in the parent window, or opens a separate window on mobile devices.
+This project consists of two main parts:
 
-Checkout, a Vue application with the actual Checkout form, is added as a submodule at [`inner/`](https://github.com/benefit-js/inner/tree/). 
+1. An `index.js` that creates an `<iframe>` in the parent window, or opens a separate window on mobile devices.
+2. Checkout, a Vue application with the actual Checkout form, is added as a submodule at [`inner/`](https://github.com/benefit-js/inner/tree/). 
 
-The two projects are tightly coupled so we track them jointly thorugh this repository.
+Since the two projects are tightly coupled, we track them jointly through this repository.
+
+### Using Benefit.js
+
+To integrate using Benefit.js, you'll need an account with BENEFIT. If you don't already have one, [sign up for a BENEFIT account through Credimax](https://www.credimax.com.bh/en/e_payment_gateway)
+
+Assuming you have an account, you can now:
+
+1. Register for a BenefitJS account at [https://benefitjs.com](https://benefitjs.com/?utm_source=github)
+2. Upload your `resource.cgn` file to the Dashboard, and receive your public key.
+3. Integrate BenefitJS into your website using the sample code below:
+
+```html
+<script 
+  src="https://checkout.benefitjs.com/"
+  data-key="key_..."
+  data-amount="12.345"
+  data-description="Your new pair of socks!"
+  data-reference="19201">
+</script>
+```
+
+### First-time local setup
+
+1. Create a `.env.development` file with the following keys:
+    - `CHECKOUT_URL=http://localhost:8080`, or whatever the local server URL is for your [`inner`](https://github.com/benefit-js/benefit-js) repository
+2. Run `yarn run serve`
+
+This should open up the `demo.html` file in your browser. Editing the `index.js` script should automagically reload your browser and keep things in sync!
 
 ### Deployment
 

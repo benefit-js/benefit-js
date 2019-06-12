@@ -2,12 +2,33 @@
 <html>
 
 <head>
+  <meta charset="UTF-8">
   <script src="./index.js"></script>
 </head>
 
 <body>
   <h1>Demo Page</h1>
   <p>This page exists to serve as a demo of the functionality afforded by the BenefitJS library.</p>
+
+  <button onClick="b.show()">💵 Pay with Benefit</button>
+  <script>
+    let b = new BenefitJS({
+      amount: 1.2,
+      publicKey: 'pk_abc123',
+      transactionId: '12910',
+      onClose: () => {
+        console.warn('onClose() called')
+      },
+      onCancel: () => {
+        console.warn('onCancel() called')
+      },
+      onComplete: () => {
+        console.info('onComplete() called')
+      }
+    })
+
+    console.log(b)
+  </script>
 </body>
 
 </html>
