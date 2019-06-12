@@ -1,12 +1,7 @@
-(function () {
-  const BenefitJS = {
-    object: "root",
-    version: "0.0.1"
+class BenefitJS {
+  constructor({ publicKey, onComplete = () => { }) {
+
   }
+}
 
-  // Read the data- params
-  // Optional: Validate the data-pk being passed
-  // Attach as window.BenefitJS
-
-  console.log(BenefitJS)
-})();
+window.BenefitJS = BenefitJS
