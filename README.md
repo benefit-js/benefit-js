@@ -61,6 +61,8 @@ Assuming you have an account, you can now:
 
 This should open up the `demo.html` file in your browser. Editing the `index.js` script should automagically reload your browser and keep things in sync!
 
+To update to the latest version of `inner`, simply run `git submodule update --remote` from the `inner/` directory.
+
 ### Deployment
 
 The wrapper `index.js` script is deployed to `https://fast.benefitjs.com/benefit.js`, our global static CDN-hosted endpoint. 
