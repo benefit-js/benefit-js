@@ -12,8 +12,6 @@ class BenefitJS {
     this.onCancel = onCancel
     this.onClose = onClose
 
-    // hide to prevent flash of unstyled content
-    elem.style.display = 'none'
     document.body.appendChild(elem)
 
     // handshake with our child
@@ -24,12 +22,13 @@ class BenefitJS {
 
     handshake.then(child => {
       this.child = child
+      this._styleElem(child.frame)
       this.iframe = child.frame
 
       // handle events originating from child
       child.on('cancel', this.onCancel)
       child.on('complete', this.onComplete)
-      child.on('close', this.hide) // hide, then trigger callback
+      child.on('close', this._hide) // hide, then trigger callback
 
       // let our child know we're all set..
       child.call('init', { publicKey, amount, transactionId })
@@ -39,7 +38,7 @@ class BenefitJS {
 
     // bind to prevent referencing issues
     this.show = this.show.bind(this)
-    this.hide = this.hide.bind(this)
+    this._hide = this._hide.bind(this)
   }
 
   show() {
@@ -50,15 +49,27 @@ class BenefitJS {
     }
 
     window.requestAnimationFrame(() => {
+      this.iframe.style.display = 'block'
       this.child.call('open')
     });
   }
 
-  hide() {
-    this.child.call('reset')
-
-    // trigger the close callback after closing the iframe
+  _hide() {
+    this.iframe.style.display = 'none'
     this.onClose()
+  }
+
+  _styleElem(iframe) {
+    iframe.allowTransparency = true
+
+    iframe.style.display = 'none'
+    iframe.style.position = 'fixed'
+    iframe.style.width = '100%'
+    iframe.style.height = '100%'
+    iframe.style.left = 0
+    iframe.style.top = 0
+    iframe.style.border = 0
+    iframe.style.zIndex = '2147483647'
   }
 }
 
