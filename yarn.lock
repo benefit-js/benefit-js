@@ -728,6 +728,11 @@ node-releases@^1.1.23:
   dependencies:
     semver "^5.3.0"
 
+postmate@^1.5.0:
+  version "1.5.0"
+  resolved "https://registry.yarnpkg.com/postmate/-/postmate-1.5.0.tgz#5efe0cc2aceea17a1a3d5bd145f63997a221556d"
+  integrity sha512-IWb5LqO8w5/gGxhSW3vdG9ZgKBkIZcpavMJtNo1g7IJQ2kbGMLoj0mpuKY4q8IbsN9BV6dh5Gdg+CjFdZrfPFg==
+
 private@^0.1.6:
   version "0.1.8"
   resolved "https://registry.yarnpkg.com/private/-/private-0.1.8.tgz#2381edb3689f7a53d653190060fcf822d2f368ff"
