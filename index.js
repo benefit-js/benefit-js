@@ -3,6 +3,7 @@ import Postmate from "postmate";
 class BenefitJS {
   constructor({ publicKey, onComplete = () => { }, onCancel = null, onClose = null, checkoutUrl = null, amount, transactionId }) {
     const elem = document.createElement('div')
+    elem.style.display = "none" // Prevent flash of unstyled content
 
     this.publicKey = publicKey
     this.checkoutUrl = checkoutUrl || process.env.CHECKOUT_URL || "https://checkout.benefitjs.com/"
@@ -24,6 +25,7 @@ class BenefitJS {
       this.child = child
       this._styleElem(child.frame)
       this.iframe = child.frame
+      elem.style.display = "block" // restore, after styling it
 
       // handle events originating from child
       child.on('cancel', this.onCancel)
