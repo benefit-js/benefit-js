@@ -3,31 +3,42 @@
 
 <head>
   <meta charset="UTF-8">
-  <script src="./index.js"></script>
 </head>
 
 <body>
   <h1>Demo Page</h1>
   <p>This page exists to serve as a demo of the functionality afforded by the BenefitJS library.</p>
 
-  <button onClick="b.show()">💵 Pay with Benefit</button>
-  <script>
-    let b = new BenefitJS({
-      amount: 1.2,
-      publicKey: 'pk_abc123',
-      transactionId: '12910',
-      onClose: () => {
-        console.warn('onClose() called')
-      },
-      onCancel: () => {
-        console.warn('onCancel() called')
-      },
-      onComplete: () => {
-        console.info('onComplete() called')
-      }
-    })
+  <h3>Simple Checkout</h3>
+  <form>
+    <script src="./index.js" data-key="abc123" data-amount=1.234 data-transaction-id="123">
+    </script>
+  </form>
 
-    console.log(b)
+  <h3>Custom Checkout Demo</h3>
+  <button onClick="customCheckout()">💵 Pay with Benefit</button>
+  <script>
+    function customCheckout() {
+      let benefit = new BenefitJS({
+        amount: 1.2,
+        key: 'pk_abc123',
+        transactionId: Date.now(),
+        onClose: () => {
+          console.warn('onClose() called')
+        },
+        onCancel: () => {
+          console.warn('onCancel() called')
+        },
+        onComplete: () => {
+          console.info('onComplete() called')
+        }
+      })
+
+      console.log(benefit)
+
+      // Auto-open
+      benefit.show()
+    }
   </script>
 </body>
 

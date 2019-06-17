@@ -44,13 +44,34 @@ Assuming you have an account, you can now:
 3. Integrate BenefitJS into your website using the sample code below:
 
 ```html
-<script 
-  src="https://checkout.benefitjs.com/"
-  data-key="key_..."
-  data-amount="12.345"
-  data-description="Your new pair of socks!"
-  data-reference="19201">
-</script>
+<form action="/pay" method="POST">
+  <script 
+    src="https://checkout.benefitjs.com/"
+    data-key="key_..."
+    data-transaction-id="19201"
+    data-amount="12.345">
+  </script>
+  <!-- renders 'pay' button, submits form when done -->
+</form>
+```
+
+.. or the more advanced custom mode:
+
+```javascript
+const benefitHandler = new BenefitJS({
+  publicKey: 'pk_abc123',
+  transactionId: '12910',
+  amount: 1.2,
+  onClose: () => {
+    console.warn('onClose() called')
+  },
+  onCancel: () => {
+    console.warn('onCancel() called')
+  },
+  onComplete: () => {
+    console.info('onComplete() called')
+  }
+})
 ```
 
 ### First-time local setup
