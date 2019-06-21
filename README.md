@@ -46,7 +46,7 @@ Assuming you have an account, you can now:
 ```html
 <form action="/pay" method="POST">
   <script 
-    src="https://checkout.benefitjs.com/"
+    src="https://fast.benefitjs.com/benefit.js"
     data-key="key_..."
     data-transaction-id="19201"
     data-amount="12.345">
