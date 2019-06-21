@@ -78,6 +78,7 @@ const benefitHandler = new BenefitJS({
 
 1. Create a `.env.development` file with the following keys:
     - `CHECKOUT_URL=http://localhost:8080`, or whatever the local server URL is for your [`inner`](https://github.com/benefit-js/benefit-js) repository
+    - `DEBUG_MODE=true`, to enable debug messages in the browser console
 2. Run `yarn run serve`
 
 This should open up the `demo.html` file in your browser. Editing the `index.js` script should automagically reload your browser and keep things in sync!
