@@ -1,12 +1,22 @@
 import Postmate from "postmate";
 
 class BenefitJS {
-  constructor(options, parentElem = null) {
-    console.debug("constructor()", options, parentElem)
+  debug(...args) {
+    /**
+     * Use this instead of console.debug() as it respects the 'DEBUG_MODE'
+     * environment variable
+     */
+    if (process.env.DEBUG_MODE) {
+      console.debug(...args)
+    }
+  }
+
+  constructor(options) {
+    this.debug("constructor()", options)
     let REQUIRED = ['key', 'amount', 'transactionId']
     for (let i = 0; i < REQUIRED.length; i++) {
       if (!options.hasOwnProperty(REQUIRED[i])) {
-        console.error(`BenefitJS: Missing required parameter: ${REQUIRED[i]}`)
+        this.debug(`BenefitJS: Missing required parameter: ${REQUIRED[i]}`)
         return false
       }
     }
@@ -18,34 +28,36 @@ class BenefitJS {
     this.amount = options['amount']
     this.transactionId = options['transactionId']
     this.onComplete = options['onComplete'] || this.submitForm
-    this.onCancel = options['onCancel']
-    this.onClose = options['onClose']
-    this.parentElem = parentElem
+    this.onCancel = options['onCancel'] || function () { }
+    this.onClose = options['onClose'] || function () { }
+    this.title = options['title'] || 'Pay with BENEFIT'
+    this.subtitle = options['subtitle'] || ''
 
     // bind to prevent referencing issues
+    this.debug = this.debug.bind(this)
     this.show = this.show.bind(this)
     this._hide = this._hide.bind(this)
 
     // Trigger onLoad when DOM is ready
     if (document.readyState === "complete") {
-      console.debug("document already loaded")
-      this.loaded()
+      this.debug("document already loaded")
+      this.onLoad()
     } else {
-      console.debug("wait for document to load")
+      this.debug("wait for document to load")
       document.addEventListener("DOMContentLoaded", e => {
-        console.debug("onload called", e.originalTarget.nodeName)
-        if (e.originalTarget.nodeName == "#document") {
+        this.debug("onload called", e.target.nodeName) //change from originalTarget
+        if (e.target.nodeName == "#document") {
           // onload also triggers for IFRAMES, etc. We're only interested in
           // hooking to the document's onload
           // See: https://stackoverflow.com/a/3473876/2022751
-          this.loaded()
+          this.onLoad()
         }
       })
     }
   }
 
-  loaded() {
-    console.debug("loaded()")
+  onLoad() {
+    this.debug("onLoad()")
     const elem = document.createElement('div')
     elem.style.display = "none" // Prevent flash of unstyled content
     document.body.appendChild(elem)
@@ -58,7 +70,7 @@ class BenefitJS {
 
     handshake.then(child => {
       this.child = child
-      this._styleElem(child.frame)
+      this._styleIframe(child.frame)
       this.iframe = child.frame
       elem.style.display = "block" // restore, after styling it
 
@@ -68,7 +80,7 @@ class BenefitJS {
       child.on('close', this._hide) // hide, then trigger callback
 
       // let our child know we're all set..
-      child.call('init', { key: this.key, amount: this.amount, transactionId: this.transactionId })
+      child.call('init', { key: this.key, amount: this.amount, transactionId: this.transactionId, title: this.title, subtitle: this.subtitle })
 
       if (this.openRequested) { this.show() }
     });
@@ -90,10 +102,10 @@ class BenefitJS {
   // private methods
   _hide() {
     this.iframe.style.display = 'none'
-    if (this.onClose) this.onClose()
+    this.onClose()
   }
 
-  _styleElem(iframe) {
+  _styleIframe(iframe) {
     iframe.allowTransparency = true
 
     iframe.style.display = 'none'
@@ -107,22 +119,58 @@ class BenefitJS {
   }
 
   _submitForm() {
-    if (!this.parentElem) {
+    const currentScript = BenefitJS.getCurrentScript();
+    const parent = currentScript.parentElement
+
+    if (!parent) {
       return false
     }
 
-    if (this.parentElem.tagName.toUpperCase != "FORM") {
-      console.error("BenefitJS: The parent element is not a FORM element. Aborting auto-submit")
+    if (parent.tagName.toUpperCase != "FORM") {
+      this.debug("BenefitJS: The parent element is not a FORM element. Aborting auto-submit")
     }
 
-    this.parentElem.submit()
+    parent.submit()
+  }
+
+  // static methods
+  static getCurrentScript() {
+    var currentScript = document.currentScript || (function () {
+      var scripts = document.getElementsByTagName('script');
+      return scripts[scripts.length - 1];
+    })();
+
+    return currentScript
+  }
+
+  static autoload() {
+    /**
+     * Automatically initializes the BenefitJS class if a script element
+     * is initialized with `data-*` params (a `data-key` param at minimum)
+     */
+    const currentScript = BenefitJS.getCurrentScript()
+
+    if (currentScript.dataset && currentScript.dataset.hasOwnProperty('key')) {
+      // When 'data-key' attribute is set, trigger auto-initialize flow
+      console.debug("Auto-initialize flow starting..")
+      const _instance = new BenefitJS(currentScript.dataset)
+      const btnText = currentScript.dataset.hasOwnProperty('buttonText') && currentScript.dataset.buttonText
+
+      let payButton = document.createElement('button')
+      payButton.innerText = btnText || "Pay by Debit Card"
+      payButton.style.padding = '10px 20px'
+      payButton.style.border = '1px solid #ccc'
+      payButton.style.borderRadius = '5px'
+      payButton.style.background = 'linear-gradient(to bottom, #fff, #ccc)'
+      payButton.style.fontSize = '16px'
+      payButton.style.cursor = 'pointer'
+      payButton.onclick = () => { _instance.show(); return false; }
+
+      currentScript.parentElement.appendChild(payButton)
+    }
   }
 }
 
 // Attach to the window
 window.BenefitJS = BenefitJS
-
-if (document.currentScript && document.currentScript.dataset && document.currentScript.dataset.hasOwnProperty('key')) {
-  // When 'data-key' attribute is set, trigger auto-initialize flow with data-* attributes
-  (new BenefitJS(document.currentScript.dataset, document.currentScript.parentElement)).show()
-}
+window.BenefitJS.autoload()

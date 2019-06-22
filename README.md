@@ -46,7 +46,7 @@ Assuming you have an account, you can now:
 ```html
 <form action="/pay" method="POST">
   <script 
-    src="https://checkout.benefitjs.com/"
+    src="https://fast.benefitjs.com/benefit.js"
     data-key="key_..."
     data-transaction-id="19201"
     data-amount="12.345">
@@ -59,9 +59,9 @@ Assuming you have an account, you can now:
 
 ```javascript
 const benefitHandler = new BenefitJS({
-  publicKey: 'pk_abc123',
-  transactionId: '12910',
-  amount: 1.2,
+  key: 'key_...',
+  transactionId: 'Order 12910',
+  amount: 1.234, // BHD
   onClose: () => {
     console.warn('onClose() called')
   },
@@ -73,6 +73,8 @@ const benefitHandler = new BenefitJS({
   }
 })
 ```
+
+For a complete list of `data-` params, see the [Supported options](#supported-options) section below.
 
 ### First-time local setup
 
@@ -95,6 +97,37 @@ Checkout is deployed at a separate endpoint at `https://checkout.benefitjs.com/`
 
 Enterprise users are welcome to contact us at [sales@benefitjs.com](mailto:sales@benefitjs.com) for priority support plans for your organization. All other users may open an issue on this repository.
 
+# Documentation
+
+## Supported Options
+
+Below is a comprehensive list of the common options supported by the BenefitJS library for both integration types (simple and custom):
+
+| Key | Reqquired? | Description | Sample |
+|---|---|---|---|
+| `key` / `data-key` | **Required** | The public key that uniquely identifies you as a seller. You can get this key from the [BenefitJS dashboard](https://benefitjs.com) | `89b51c9e-9338-11e9-9cc3-0242ac110003` |
+| `transactionId` / `data-transaction-id` | **Required** | Any unique character sequence that can be used to identify this order. Usually something your backend generates | `Order-1234` |
+| `amount` / `data-amount` | **Required** | The amount that the customer will pay for the order, in BHD. This is a decimal value | `1.234` *= BHD 1.234* |
+| `title` / `data-title` | *optional* | The title shown on top of the payment page. Great place to put the seller name | `Batelco`. Default is `Pay with BENEFIT` |
+| `subtitle` / `data-subtitle` | *optional* | Displayed just under the title on the payment page. Great place to include a description of the items being purchased. Default is empty |
+
+### Simple-only options
+
+The options below are only supported by the Simple integration:
+
+| Option | Required? | Description |
+|---|---|---|---| 
+| `data-button-text` | *optional* | The text shown on the "Pay Now" button that is generated. Defaults to `Pay by Debit Card` |
+
+### Custom-only options
+
+The Custom integration supports the following callbacks:
+
+| Option | Required? | Description |
+|---|---|---| 
+| `onCancel` | *optional* | Function that is called when the payment dialog is cancelled by the user.
+| `onComplete` | *optional* | Function that is called when the payment is successfully completed.
+| `onClose` | *optional* | The function that is called when the modal dialog is closed. This is always triggered on modal close, regardless of the underlying reason (e.g. user cancellation or payment completion).
 --
 
 ¹ **Note:** BenefitJS is not affiliated with The BENEFIT Company in Bahrain. This open source library is provided by contributors to help improve the payment experience for customers and companies in Bahrain. 
