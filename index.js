@@ -28,8 +28,10 @@ class BenefitJS {
     this.amount = options['amount']
     this.transactionId = options['transactionId']
     this.onComplete = options['onComplete'] || this.submitForm
-    this.onCancel = options['onCancel']
-    this.onClose = options['onClose']
+    this.onCancel = options['onCancel'] || function () { }
+    this.onClose = options['onClose'] || function () { }
+    this.title = options['title'] || 'Pay with BENEFIT'
+    this.subtitle = options['subtitle'] || ''
 
     // bind to prevent referencing issues
     this.debug = this.debug.bind(this)
@@ -78,7 +80,7 @@ class BenefitJS {
       child.on('close', this._hide) // hide, then trigger callback
 
       // let our child know we're all set..
-      child.call('init', { key: this.key, amount: this.amount, transactionId: this.transactionId })
+      child.call('init', { key: this.key, amount: this.amount, transactionId: this.transactionId, title: this.title, subtitle: this.subtitle })
 
       if (this.openRequested) { this.show() }
     });
@@ -100,7 +102,7 @@ class BenefitJS {
   // private methods
   _hide() {
     this.iframe.style.display = 'none'
-    if (this.onClose) this.onClose()
+    this.onClose()
   }
 
   _styleIframe(iframe) {
@@ -152,9 +154,10 @@ class BenefitJS {
       // When 'data-key' attribute is set, trigger auto-initialize flow
       console.debug("Auto-initialize flow starting..")
       const _instance = new BenefitJS(currentScript.dataset)
+      const btnText = currentScript.dataset.hasOwnProperty('buttonText') && currentScript.dataset.buttonText
 
       let payButton = document.createElement('button')
-      payButton.innerText = "Pay by Debit Card"
+      payButton.innerText = btnText || "Pay by Debit Card"
       payButton.style.padding = '10px 20px'
       payButton.style.border = '1px solid #ccc'
       payButton.style.borderRadius = '5px'
