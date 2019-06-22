@@ -43,8 +43,8 @@ class BenefitJS {
     } else {
       this.debug("wait for document to load")
       document.addEventListener("DOMContentLoaded", e => {
-        this.debug("onload called", e.originalTarget.nodeName)
-        if (e.originalTarget.nodeName == "#document") {
+        this.debug("onload called", e.target.nodeName) //change from originalTarget
+        if (e.target.nodeName == "#document") {
           // onload also triggers for IFRAMES, etc. We're only interested in
           // hooking to the document's onload
           // See: https://stackoverflow.com/a/3473876/2022751
