@@ -7,8 +7,8 @@
   },
   "scripts": {
     "build": "npx parcel build index.js --out-file benefit.js",
-    "watch": "NODE_ENV=development npx parcel watch index.js --out-file benefit.js",
-    "serve": "NODE_ENV=development npx parcel serve demo.html --port=8090 --open"
+    "watch": "NODE_ENV=development npx parcel watch index.js --out-file benefit.js --no-cache",
+    "serve": "NODE_ENV=development npx parcel demo.html --port=8090 --open --no-cache"
   },
   "name": "benefit-js",
   "version": "0.0.1",
