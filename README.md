@@ -103,7 +103,7 @@ Enterprise users are welcome to contact us at [sales@benefitjs.com](mailto:sales
 
 Below is a comprehensive list of the common options supported by the BenefitJS library for both integration types (simple and custom):
 
-| Key | Reqquired? | Description | Sample |
+| Key | Required? | Description | Sample |
 |---|---|---|---|
 | `key` / `data-key` | **Required** | The public key that uniquely identifies you as a seller. You can get this key from the [BenefitJS dashboard](https://benefitjs.com) | `89b51c9e-9338-11e9-9cc3-0242ac110003` |
 | `transactionId` / `data-transaction-id` | **Required** | Any unique character sequence that can be used to identify this order. Usually something your backend generates | `Order-1234` |
@@ -116,7 +116,7 @@ Below is a comprehensive list of the common options supported by the BenefitJS l
 The options below are only supported by the Simple integration:
 
 | Option | Required? | Description |
-|---|---|---|---| 
+|---|---|---| 
 | `data-button-text` | *optional* | The text shown on the "Pay Now" button that is generated. Defaults to `Pay by Debit Card` |
 
 ### Custom-only options
