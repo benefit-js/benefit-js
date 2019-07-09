@@ -1,22 +1,30 @@
-<!doctype html>
+<!DOCTYPE html>
 <html>
+  <head>
+    <meta charset="UTF-8" />
+  </head>
 
-<head>
-  <meta charset="UTF-8">
-</head>
+  <body>
+    <h1>Demo Page</h1>
+    <p>
+      This page exists to serve as a demo of the functionality afforded by the
+      BenefitJS library.
+    </p>
 
-<body>
-  <h1>Demo Page</h1>
-  <p>This page exists to serve as a demo of the functionality afforded by the BenefitJS library.</p>
+    <h3>Simple Checkout</h3>
+    <form>
+      <script
+        src="./index.js"
+        data-key="ba149462-9294-11e9-90b9-00ffae9d67db"
+        data-amount="0.123"
+        data-transaction-id="123"
+        data-button-text="Pay using BENEFIT"
+        data-title="Batelco"
+        data-subtitle="Bill payment for 3999 9999"
+      ></script>
+    </form>
 
-  <h3>Simple Checkout</h3>
-  <form>
-    <script src="./index.js" data-key="89a3153e-9338-11e9-9cc3-0242ac110003" data-amount=1.234 data-transaction-id="123"
-      data-button-text="Pay using BENEFIT" data-title="Batelco" data-subtitle="Bill payment for 3999 9999">
-      </script>
-  </form>
-
-  <!--
+    <!--
   <h3>Custom Checkout Demo</h3>
   <button onClick="customCheckout()">💵 Pay with Benefit</button>
   <script>
@@ -42,7 +50,5 @@
       benefit.show()
     }
   </script>
-  -->
-</body>
-
+  --></body>
 </html>
