@@ -55,9 +55,9 @@ Assuming you have an account, you can now:
 </form>
 ```
 
-.. or the more advanced custom mode:
-
-```javascript
+<details>
+<summary>Interested in more finer-grained control of the checkout? Then <strong>custom mode is for you!</strong></summary>
+<pre style="white-space:nowrap">
 const benefitHandler = new BenefitJS({
   key: 'key_...',
   transactionId: 'Order 12910',
@@ -72,7 +72,8 @@ const benefitHandler = new BenefitJS({
     console.info('onComplete() called')
   }
 })
-```
+</pre>
+</details>
 
 For a complete list of `data-` params, see the [Supported options](#supported-options) section below.
 
@@ -109,7 +110,7 @@ Below is a comprehensive list of the common options supported by the BenefitJS l
 | `transactionId` / `data-transaction-id` | **Required** | Any unique character sequence that can be used to identify this order. Usually something your backend generates | `Order-1234` |
 | `amount` / `data-amount` | **Required** | The amount that the customer will pay for the order, in BHD. This is a decimal value | `1.234` *= BHD 1.234* |
 | `title` / `data-title` | *optional* | The title shown on top of the payment page. Great place to put the seller name | `Batelco`. Default is `Pay with BENEFIT` |
-| `subtitle` / `data-subtitle` | *optional* | Displayed just under the title on the payment page. Great place to include a description of the items being purchased. |  `Bill payment for 3999 9999`. Default is empty |
+| `subtitle` / `data-subtitle` | *optional* | Displayed directly under the title on the payment page. Great place to include a description of the items being purchased. |  `Bill payment for 3999 9999`. Default is ` ` (empty) |
 
 ### Simple-only options
 
@@ -127,7 +128,7 @@ The Custom integration supports the following callbacks:
 |---|---|---| 
 | `onCancel` | *optional* | Function that is called when the payment dialog is cancelled by the user.
 | `onComplete` | *optional* | Function that is called when the payment is successfully completed.
-| `onClose` | *optional* | The function that is called when the modal dialog is closed. This is always triggered on modal close, regardless of the underlying reason (e.g. user cancellation or payment completion).
+| `onClose` | *optional* | The function that is called when the modal dialog is closed. This is **always** triggered on modal close, regardless of the underlying reason (e.g. user cancellation or payment completion).
 
 ¹ **Note:** BenefitJS is not affiliated with The BENEFIT Company in Bahrain. This open source library is provided by contributors to help improve the payment experience for customers and companies in Bahrain. 
 
