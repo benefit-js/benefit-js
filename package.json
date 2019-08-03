@@ -6,7 +6,7 @@
     "postmate": "^1.5.0"
   },
   "scripts": {
-    "build": "npx parcel build index.js --out-file benefit.js",
+    "build": "npx parcel build index.js --out-file benefit.js; cp _redirects dist/",
     "watch": "NODE_ENV=development npx parcel watch index.js --out-file benefit.js --no-cache",
     "serve": "NODE_ENV=development npx parcel demo.html --port=8090 --open --no-cache"
   },
