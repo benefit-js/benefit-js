@@ -1,0 +1,21 @@
+{
+  "devDependencies": {
+    "@babel/preset-env": "^7.4.5",
+    "npx": "^10.2.0",
+    "parcel": "^1.12.3",
+    "postmate": "^1.5.0"
+  },
+  "scripts": {
+    "build": "npx parcel build index.js --out-file benefit.js; cp _redirects dist/",
+    "watch": "NODE_ENV=development npx parcel watch index.js --out-file benefit.js --no-cache",
+    "serve": "NODE_ENV=development npx parcel demo.html --port=8090 --open --no-cache"
+  },
+  "name": "benefit-js",
+  "version": "0.0.1",
+  "description": "BenefitJS allows you to seamlessly accept Debit Card payments in Bahrain",
+  "main": "index.js",
+  "repository": "https://github.com/benefit-js/benefit-js.git",
+  "author": "BenefitJS <github@benefitjs.com>",
+  "license": "MIT",
+  "private": false
+}

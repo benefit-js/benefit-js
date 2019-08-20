@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+  </head>
+
+  <body>
+    <h1>Demo Page</h1>
+    <p>
+      This page exists to serve as a demo of the functionality afforded by the
+      BenefitJS library.
+    </p>
+
+    <h3>Simple Checkout</h3>
+    <form>
+      <script
+        src="./index.js"
+        data-key="ba149462-9294-11e9-90b9-00ffae9d67db"
+        data-amount="0.123"
+        data-transaction-id="123"
+        data-button-text="Pay using BENEFIT"
+        data-title="Batelco"
+        data-subtitle="Bill payment for 3999 9999"
+      ></script>
+    </form>
+
+    <!--
+  <h3>Custom Checkout Demo</h3>
+  <button onClick="customCheckout()">💵 Pay with Benefit</button>
+  <script>
+    function customCheckout() {
+      let benefit = new BenefitJS({
+        amount: 1.2,
+        key: 'pk_abc123',
+        transactionId: Date.now(),
+        onClose: () => {
+          console.warn('onClose() called')
+        },
+        onCancel: () => {
+          console.warn('onCancel() called')
+        },
+        onComplete: () => {
+          console.info('onComplete() called')
+        }
+      })
+
+      console.log(benefit)
+
+      // Auto-open
+      benefit.show()
+    }
+  </script>
+  --></body>
+</html>
