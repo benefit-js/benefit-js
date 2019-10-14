@@ -40,7 +40,7 @@ To integrate using Benefit.js, you'll need an account with BENEFIT. If you don't
 
 Assuming you have an account, you can now:
 
-1. Register for a BenefitJS account at [https://benefitjs.com](https://benefitjs.com/?utm_source=github)
+1. Register for a BenefitJS account at [https://site.benefitjs.com](https://site.benefitjs.com/?utm_source=github)
 2. Upload your `resource.cgn` file to the Dashboard, and receive your public key.
 3. Integrate BenefitJS into your website using the sample code below:
 
