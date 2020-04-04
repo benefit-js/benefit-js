@@ -1,21 +1,22 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="UTF-8" />
-  </head>
 
-  <body>
-    <h1>Demo Page</h1>
-    <p>
-      This page exists to serve as a demo of the functionality afforded by the
-      BenefitJS library.
-    </p>
+<head>
+  <meta charset="UTF-8" />
+</head>
 
-    <h3>Simple Checkout</h3>
-    <form>
+<body>
+  <h1>Demo Page</h1>
+  <p>
+    This page exists to serve as a demo of the functionality afforded by the
+    BenefitJS library.
+  </p>
+
+  <h3>Simple Checkout</h3>
+    <form action="/pay" method="post">
       <script
         src="./index.js"
-        data-key="ba149462-9294-11e9-90b9-00ffae9d67db"
+        data-key="dfc9b9a6-9777-11ea-af78-0242ac110003"
         data-amount="0.123"
         data-transaction-id="123"
         data-button-text="Pay using BENEFIT"
@@ -23,32 +24,42 @@
         data-subtitle="Bill payment for 3999 9999"
       ></script>
     </form>
+</body>
 
-    <!--
-  <h3>Custom Checkout Demo</h3>
-  <button onClick="customCheckout()">💵 Pay with Benefit</button>
+</html>
+
+
+<!-- <html lang=en>
+  <head>
+    <meta charset="UTF-8">
+  </head>
+<body>
+  <button onclick='showBenefitJS()'>Click to pay</button>
+
+  <script src="//fast.benefitjs.com"></script>
   <script>
-    function customCheckout() {
+    function showBenefitJS() {
+      // setup BenefitJS
       let benefit = new BenefitJS({
-        amount: 1.2,
-        key: 'pk_abc123',
-        transactionId: Date.now(),
+        key: 'dfc9b9a6-9777-11ea-af78-0242ac110003',
+        transactionId: '129109',
+        amount: 12.34, // BHD
         onClose: () => {
-          console.warn('onClose() called')
+          console.warn('doesnt necessarily mean the payment was successful!')
         },
         onCancel: () => {
-          console.warn('onCancel() called')
+          console.warn('user cancelled the payment')
         },
         onComplete: () => {
-          console.info('onComplete() called')
+          console.info('payment successful!')
+          alert('✅ we just got paid!')
         }
-      })
+      });
 
-      console.log(benefit)
-
-      // Auto-open
-      benefit.show()
+      // show it
+      benefit.show();
     }
   </script>
-  --></body>
-</html>
+</body>
+
+</html> -->
