@@ -57,8 +57,9 @@ Assuming you have an account, you can now:
 ```
 
 <details>
-<summary>Interested in more finer-grained control of the checkout? Then <strong>custom mode is for you!</strong></summary>
-<pre style="white-space:nowrap">
+<summary>Interested in more finer-grained control of the checkout? Then <strong>custom mode is for you! 👇</strong></summary>
+
+```js
 const benefitHandler = new BenefitJS({
   key: 'key_...',
   transactionId: 'Order 12910',
@@ -73,7 +74,7 @@ const benefitHandler = new BenefitJS({
     console.info('onComplete() called')
   }
 })
-</pre>
+```
 </details>
 
 For a complete list of `data-` params, see the [Supported options](#supported-options) section below.
