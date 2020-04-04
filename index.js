@@ -27,7 +27,7 @@ class BenefitJS {
     this.checkoutUrl =
       options["checkoutUrl"] ||
       process.env.CHECKOUT_URL ||
-      "https://checkout.benefit-js.com/";
+      "https://benefitjs-checkout.netlify.app/";
     this.amount = options["amount"];
     this.transactionId = options["transactionId"];
     this.onComplete = options["onComplete"] || this._submitForm.bind(this);

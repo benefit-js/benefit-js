@@ -40,14 +40,14 @@ To integrate using Benefit.js, you'll need an account with BENEFIT. If you don't
 
 Assuming you have an account, you can now:
 
-1. Register for a BenefitJS account at [https://benefit-js.com](https://benefit-js.com/?utm_source=github)
+1. Register for a BenefitJS account at [benefit-bahrain.netlify.app](https://benefit-js.com/?utm_source=github)
 2. Upload your `resource.cgn` file to the Dashboard, and receive your public key.
 3. Integrate BenefitJS into your website using the sample code below:
 
 ```html
 <form action="/pay" method="POST">
   <script
-    src="//fast.benefit-js.com"
+    src="//benefitjs.netlify.app"
     data-key="key_..."
     data-transaction-id="19201"
     data-amount="12.345"
@@ -92,9 +92,9 @@ To update to the latest version of `inner`, simply run `git submodule update --r
 
 ### Deployment
 
-The wrapper `index.js` script is deployed to `https://fast.benefit-js.com/benefit.js`, our global static CDN-hosted endpoint.
+The wrapper `index.js` script is deployed to `https://benefitjs.netlify.app`, our global static CDN-hosted endpoint.
 
-Checkout is deployed at a separate endpoint at `https://checkout.benefit-js.com/`.
+Checkout is deployed at a separate endpoint at `https://benefitjs-checkout.netlify.app/`.
 
 ## 📩 Premium Support
 
