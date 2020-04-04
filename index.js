@@ -154,7 +154,7 @@ class BenefitJS {
       const _instance = new BenefitJS(currentScript.dataset)
 
       let payButton = document.createElement('button')
-      payButton.innerText = "Pay me now"
+      payButton.innerText = "Pay by Debit Card"
       payButton.style.padding = '10px 20px'
       payButton.style.border = '1px solid #ccc'
       payButton.style.borderRadius = '5px'
