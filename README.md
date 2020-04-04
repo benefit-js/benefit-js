@@ -128,7 +128,6 @@ The Custom integration supports the following callbacks:
 | `onCancel` | *optional* | Function that is called when the payment dialog is cancelled by the user.
 | `onComplete` | *optional* | Function that is called when the payment is successfully completed.
 | `onClose` | *optional* | The function that is called when the modal dialog is closed. This is always triggered on modal close, regardless of the underlying reason (e.g. user cancellation or payment completion).
---
 
 ¹ **Note:** BenefitJS is not affiliated with The BENEFIT Company in Bahrain. This open source library is provided by contributors to help improve the payment experience for customers and companies in Bahrain. 
 
