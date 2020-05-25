@@ -134,11 +134,7 @@ class BenefitJS {
     const currentScript = BenefitJS.getCurrentScript();
     const parent = currentScript.parentElement;
 
-    if (!parent) {
-      return false;
-    }
-
-    if (parent.tagName.toUpperCase != "FORM") {
+    if (!parent || parent.tagName.toUpperCase != "FORM") {
       this.debug(
         "BenefitJS: The parent element is not a FORM element. Aborting auto-submit"
       );
