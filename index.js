@@ -30,7 +30,7 @@ class BenefitJS {
       "https://checkout.benefitjs.com/";
     this.amount = options["amount"];
     this.transactionId = options["transactionId"];
-    this.onComplete = options["onComplete"] || this.submitForm;
+    this.onComplete = options["onComplete"] || this._submitForm.bind(this);
     this.onCancel = options["onCancel"] || function() {};
     this.onClose = options["onClose"] || function() {};
     this.title = options["title"] || "Pay with BENEFIT";
@@ -130,6 +130,7 @@ class BenefitJS {
   }
 
   _submitForm() {
+    this.debug('_submitForm()');
     const currentScript = BenefitJS.getCurrentScript();
     const parent = currentScript.parentElement;
 
@@ -177,7 +178,7 @@ class BenefitJS {
       payButton.style.padding = "10px 20px";
       payButton.style.border = "1px solid #ccc";
       payButton.style.borderRadius = "5px";
-      payButton.style.background = "linear-gradient(to bottom, #fff, #ccc)";
+      payButton.style.background = "linear-gradient(to bottom, #fff, #eee)";
       payButton.style.fontSize = "16px";
       payButton.style.cursor = "pointer";
       payButton.onclick = () => {
