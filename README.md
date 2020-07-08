@@ -40,14 +40,14 @@ To integrate using Benefit.js, you'll need an account with BENEFIT. If you don't
 
 Assuming you have an account, you can now:
 
-1. Register for a BenefitJS account at [https://site.benefitjs.com](https://site.benefitjs.com/?utm_source=github)
+1. Register for a BenefitJS account at [https://benefit-js.com](https://benefit-js.com/?utm_source=github)
 2. Upload your `resource.cgn` file to the Dashboard, and receive your public key.
 3. Integrate BenefitJS into your website using the sample code below:
 
 ```html
 <form action="/pay" method="POST">
   <script
-    src="//fast.benefitjs.com"
+    src="//fast.benefit-js.com"
     data-key="key_..."
     data-transaction-id="19201"
     data-amount="12.345"
@@ -92,13 +92,13 @@ To update to the latest version of `inner`, simply run `git submodule update --r
 
 ### Deployment
 
-The wrapper `index.js` script is deployed to `https://fast.benefitjs.com/benefit.js`, our global static CDN-hosted endpoint.
+The wrapper `index.js` script is deployed to `https://fast.benefit-js.com/benefit.js`, our global static CDN-hosted endpoint.
 
-Checkout is deployed at a separate endpoint at `https://checkout.benefitjs.com/`.
+Checkout is deployed at a separate endpoint at `https://checkout.benefit-js.com/`.
 
 ## 📩 Premium Support
 
-Enterprise users are welcome to contact us at [sales@benefitjs.com](mailto:sales@benefitjs.com) for priority support plans for your organization. All other users may open an issue on this repository.
+Enterprise users are welcome to contact us at [sales@benefit-js.com](mailto:sales@benefit-js.com) for priority support plans for your organization. All other users may open an issue on this repository.
 
 # Documentation
 
@@ -108,7 +108,7 @@ Below is a comprehensive list of the common options supported by the BenefitJS l
 
 | Key                                     | Required?    | Description                                                                                                                         | Sample                                              |
 | --------------------------------------- | ------------ | :---------------------------------------------------------------------------------------------------------------------------------- | :-------------------------------------------------- |
-| `key` / `data-key`                      | **Required** | The public key that uniquely identifies you as a seller. You can get this key from the [BenefitJS dashboard](https://benefitjs.com) | `89b51c9e-9338-11e9-9cc3-0242ac110003`              |
+| `key` / `data-key`                      | **Required** | The public key that uniquely identifies you as a seller. You can get this key from the [BenefitJS dashboard](https://benefit-js.com) | `89b51c9e-9338-11e9-9cc3-0242ac110003`              |
 | `transactionId` / `data-transaction-id` | **Required** | Any unique character sequence that can be used to identify this order. Usually something your backend generates                     | `Order-1234`                                        |
 | `amount` / `data-amount`                | **Required** | The amount that the customer will pay for the order, in BHD. This is a decimal value                                                | `1.234` _= BHD 1.234_                               |
 | `title` / `data-title`                  | _Optional_   | The title shown on top of the payment page. Great place to put the seller name                                                      | `Batelco`. Default is `Pay with BENEFIT`            |
